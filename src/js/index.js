@@ -5,9 +5,10 @@ let a = 444
 
 // ------------------ VIEW
 
-const message = (status = 'msg', msg = 'Морской бой!') => {
+const message = (status, msg) => {
     const messageList = document.querySelector('.message-list')
     const div = document.createElement('div')
+    
     div.classList.add('message')
     messageList.append(div)
     
@@ -15,39 +16,42 @@ const message = (status = 'msg', msg = 'Морской бой!') => {
         case 'hit':
             div.classList.add('message-hit')
             div.innerHTML = msg + ' Попал !'
-            setTimeout(() => div.remove(), 5000)
+            console.log(444)
             break
         case 'miss':
             div.classList.add('message-miss')
             div.innerHTML = msg + ' Промах !'
-            setTimeout(() => div.remove(), 5000)
-            break
-        default:
-            div.classList.add('message-msg')
-            div.innerHTML = msg
-            setTimeout(() => div.remove(), 5000)
             break
     }
+    
+    setTimeout(() => div.remove(), 2000)
 }
 
 // ---------------------- controller
 
 const fire = (e) => {
-    if (!e.target.classList.contains('col-item')) return
+    if (e.target.classList.contains('ship-hit')) return
     
-    e.target.classList.add('hit')
-    message('hit', e.target.id)
-    
+    message('hit', e.target.closest('li').id.toUpperCase())
+    e.target.classList.add('ship-hit')
 }
 
 const miss = (e) => {
-    if (!e.target.classList.contains('col-item')) return
-    
     e.target.classList.add('miss')
-    message('msg', e.target.id)
+    message('miss', e.target.id.toUpperCase())
 }
 
-seaList.addEventListener('click', miss)
+const shot = (e) => {
+    if (!e.target.closest('li')) return
+    if (e.target.classList.contains('ship')) {
+        fire(e)
+    }
+    else {
+        miss(e)
+    }
+}
+
+seaList.addEventListener('click', shot)
 
 
 // ---------------------- VIEW
