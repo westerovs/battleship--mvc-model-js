@@ -1,6 +1,8 @@
 const seaList = document.querySelector('.sea-list')
 const colItems = Array.from(seaList.querySelectorAll('.col-item'))
 
+let a = 444
+
 // ------------------ VIEW
 
 const message = (status = 'msg', msg = 'Морской бой!') => {
@@ -50,17 +52,15 @@ seaList.addEventListener('click', miss)
 
 // ---------------------- VIEW
 const createShip = (...id) => {
-    let count = 0
-    
-    colItems.forEach((item, index) => {
-        if (item.id.toLowerCase() === id[count]) {
-            const partShip = document.createElement('div')
-            partShip.classList.add('ship')
-            item.append(partShip)
-            
-            count++
-        }
+    id.forEach(id => {
+        colItems.find(col => {
+            if (id.toLowerCase() === col.id.toLowerCase()) {
+                const partShip = document.createElement('div')
+                partShip.classList.add('ship')
+                col.append(partShip)
+            }
+        })
     })
 }
 
-createShip('f3', 'f4', 'f5', 'g1')
+createShip('a7', 'a2', 'b4', 'a1', 'g6', 'b6')
