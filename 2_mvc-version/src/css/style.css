@@ -1,8 +1,3 @@
-/*
-картинки-заглушки
-https://via.placeholder.com/150x100
-*/
-
 *,
 ::before,
 ::after {
@@ -21,16 +16,7 @@ https://via.placeholder.com/150x100
     font-family: Geometria, Arial, Helvetica, sans-serif;
     background-color: #2c7580;
     color: #ccc;
-    overflow: hidden;
     user-select: none;
-}
-
-a {
-    text-decoration: none;
-}
-
-li {
-    list-style-type: none;
 }
 
 img {
@@ -39,104 +25,49 @@ img {
     height: auto;
 }
 
-/*безопасное скрытие элемента*/
-.visually-hidden {
-    position: absolute !important;
-    width: 1px !important;
-    height: 1px !important;
-    margin: -1px !important;
-    padding: 0 !important;
-    border: 0 !important;
-    clip: rect(0 0 0 0) !important;
-    overflow: hidden !important;
-}
-
-.wrapper {
+#board {
     position: relative;
-    margin: 120px auto 0;
-    min-width: 400px;
-    width: 400px;
-    min-height: 400px;
+    width: 1024px;
+    height: 863px;
+    margin: auto;
+    background: url("../img/board.jpg") no-repeat;
 }
 
-ol {
-    counter-reset: rowCounter;
-}
-
-.row {
-    position: relative;
-}
-
-span {
+#messageArea {
     position: absolute;
-    top: 50%;
-    left: -25px;
-    transform: translateY(-50%);
+    top: 0;
+    left: 0;
+    color: rgb(83, 175, 19);
 }
 
-.col {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
+.hit {
+    background: url("../img/ship.png") no-repeat center center;
 }
-
-.col-item {
-    position: relative;
-    border: 1px solid black;
-    height: 50px;
-}
-
-.row:nth-child(1) .col-item::before {
-    counter-increment: rowCounter;
-    content: counter(rowCounter);
-    position: absolute;
-    top: -30px;
-    left: -50%;
-    width: 100%;
-    transform: translateX(50%);
-    text-align: center;
-}
-
-
 .miss {
-    background: blue;
+    background: url("../img/miss.png") no-repeat center center;
 }
 
-.message-list {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    display: grid;
-    gap: 10px 0;
-    z-index: -1;
+table {
+    border-spacing: 0;
+    position: absolute;
+    left: 173px;
+    top: 98px;
+}
+td {
+    width: 94px;
+    height: 94px;
 }
 
-.message {
-    left: 10px;
-    width: 250px;
-    padding: 20px 50px;
-    border-radius: 5px;
+form {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 15px;
+    background-color: rgb(83, 175, 19);
 }
 
-.message-hit {
-    background-image: linear-gradient(60deg, red, transparent);
-}
-
-.message-miss {
-    background-image: linear-gradient(60deg, blue, transparent);
-}
-
-.message-msg {
-    background-image: linear-gradient(60deg, green, transparent);
-}
-
-.ship {
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: 1s;
-}
-
-.ship-hit {
-    background: darkred;
-    opacity: 1;
+form input {
+    background-color: rgb(152, 207, 113);
+    border-color: rgb(83, 175, 19);
+    font-size: 1em;
 }
